@@ -1,0 +1,51 @@
+#include<stdio.h>
+#include<conio.h>
+
+double newfunction(int k, int i);
+int x[4] = {1,2,3,4};
+float fx[4] = {0,0.3010,0.4771,0.6021};
+float Pointx=2.5;
+int k=0;
+
+int main(){
+
+    int i,j;
+    int n;
+
+    float Estimate=0;
+    float newProduct=1.0;
+
+    printf("Enter the value of n\n");
+    scanf("%d",&n);
+    for(i=1;i<=n;i++){
+
+            double func=newfunction(k,i);
+            printf("\nThe value of a%d= %lf\n",i,func);
+
+            for(j=0;j<=i-1;j++){
+            newProduct *=(Pointx-x[j]);
+            }
+            Estimate += func * newProduct;
+    }
+
+    printf("\nThe estimate is %f\n",Estimate);
+    return 0;
+}
+
+double newfunction(k,i){
+      double ret=0;
+      if(k==i){
+           ret = fx[k];
+      }
+
+      else if(k==i-1) {
+           ret=(fx[i]-fx[k])/(x[i]-x[k]);
+      }
+      else {
+           ret=(newfunction(k+1,i)-newfunction(k,i-1))/(x[i]-x[k]);
+      }
+      return ret;
+}
+
+
+Enter file contents here
